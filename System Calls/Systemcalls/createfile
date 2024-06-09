@@ -1,0 +1,36 @@
+Scenario 1: File Doesn't Exist (First Run)
+
+    The program will attempt to create a new file named "my_file.txt" with read/write permissions (0644).
+    If successful, the output will be:
+ File 'my_file.txt' created successfully.
+
+Scenario 2: File Already Exists (Subsequent Runs)
+
+    If the file "my_file.txt" already exists before running the program again, the O_EXCL flag will prevent creating a new file.
+    The program will then open the existing file in read-only mode (O_RDONLY).
+    The output will be:
+
+File 'my_file.txt' already exists, opened for reading.
+These observations shows how the program run and adopts its behavior based on the presence or absence of the file.
+Question3:
+Scenario 1:Running this program will create a file named "my_file.txt" (if it doesn't exist) and append the content "This is some content to write.\n" to it three times (as defined by num_writes). There will be no error messages, and the program will print:
+
+Content written to 'my_file.txt' 3 times.
+
+Question 4:
+Scenario 1: Invalid flag combination (O_RDONLY | O_WRONLY) This attempts to open a file for both reading and writing exclusively. These flags are mutually exclusive.
+
+Scenario 2: O_CREAT | O_TRUNC | O_EXCL (on an existing file): 
+ This attempts to create a new file while truncating (clearing) and ensuring exclusivity. This won't work on existing files because O_EXCL prevents creating a file if it already exists.
+Output (assuming "existing_file.txt" exists):
+open: Operation not permitted
+
+Scenario 3: O_RDWR (Open for reading and writing):This attempts to open a file for both reading and writing exclusively.
+
+Scenario 4: O_CREAT :Create a new file if it doesn't exist
+
+Question 1:
+Secnario 1: This program demonstrates opening a file in write mode ("w"). If the file doesn't exist, it's created. The program then prompts the user for a filename and content, removes trailing newlines from the input, and writes the content to the file. Finally, it closes the file and prints a success message.
+~                                                                                                                                                                                                                  
+~                                                                                                                                                                                                                  
+~                                                 

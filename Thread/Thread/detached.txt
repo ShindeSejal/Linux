@@ -1,0 +1,24 @@
+Question 1:
+Scenerio 1:he parent process successfully forks a child process, evidenced by the lines: (UID)diot,(PID)4228,(PPID)3903,(LWP)4228,(C)0,1 17:49 pts/0 , 00:00:00, vim assignment
+Scenario 2: Thread Creation:
+    The child process creates NUM_THREADS (defined as 4 in the code) threads.
+    The Thread X: Running... messages (where X is the thread ID) indicate successful thread creation.
+
+Question 2:
+Scenerio 1:unning Threads:
+You'll see multiple entries for your program in the output of the ps command, one for the main program and one for each running thread.
+Thread State: The state column in the ps command might show "S" (sleeping), "R" (running), or another state depending on what the thread is doing at the time you run ps.
+Join Impact: If you join the threads, the main program will wait for all threads to finish before continuing. This will result in the ps command only showing the main program entry once all threads have completed.
+Scenerio 2:Without joining:
+You'll see multiple entries for your program in the ps output, indicating multiple running threads.
+With joining: You'll only see one entry for your program in the ps output after all threads have finished (assuming they complete successfully).
+
+
+Question 3:
+Scenerio 1: Without Detaching:
+Run the program and use ps aux | grep <program_name> to see process information.
+You'll see multiple entries for your program, indicating the main thread and each created thread. These threads will remain until they finish execution.                
+         
+Scenerio 2 :With Detaching (uncomment pthread_detach(threads[i]);):
+Run the program again.
+You might see multiple entries initially, but as threads finish their work, they disappear from the ps output. This is because detached threads are not joined by the main thread and become responsible for their own cleanup. 

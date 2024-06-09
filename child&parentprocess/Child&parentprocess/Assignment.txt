@@ -1,0 +1,38 @@
+Question 1:
+Scenerio:Normal Exit: Child processes 2, 4, and potentially 0 (if it exits before entering the loop) will exit normally with codes 0, 2, and 4 respectively.
+Child 3088 exited with code 0
+Child 3090 exited with code 2
+Child 3092 exited with code 4
+
+Scenerio 2:Looping Children: Child processes 1 and 3 will be caught in the waitpid loop as they never exit normally. You might need to terminate them manually using kill -SIGKILL <pid> (replace <pid> with the actual process ID) to observe the exit status handling for terminated children
+
+Question 2:
+Scenerio 1:
+Normal Exit:
+
+    evince (PDF viewer) exit code depends on whether a PDF is opened successfully.
+    kwrite (text editor) exit code depends on user actions and saving.
+    gcc main.c will exit with 0 if compilation is successful, non-zero otherwise.
+    ./while1 (assuming while1.c contains an infinite loop) will be caught in the waitpid loop and might need to be terminated manually.
+Scenerio 2 :OUTPUT
+xeclp: No such file or directory
+execlp: No such file or directory
+execlp: No such file or directory
+execlp: No such file or directory
+execlp: No such file or directory
+Child 3182 (application: Sehun) exited with code 1
+Child 3183 (application: Suho) exited with code 1
+Child 3184 (application: Bekhyaun) exited with code 1
+Child 3185 (application: Chenyeol) exited with code 1
+Child 3186 (application: kai) exited with code 1
+Parent process exiting
+
+Question 3 :
+Scenerio 1:Successful Compilation and Execution:
+The code will compile all programs, link them, and execute the final program.
+The output might depend on the behavior of your child programs (progN.c).
+Compilation or Linking Failure:
+If any child process fails to compile or the linking fails, the parent will exit with an error message.
+Execution Failure: If the final program (./final) fails to execute, the parent will print an error message.
+
+
